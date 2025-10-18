@@ -1,0 +1,52 @@
+services:
+  app:
+    image: ${PROJECT_NAME}
+    build: .
+    command: sleep infinity
+    volumes:
+      - ../:/workspace
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      - db
+
+  db:
+    image: postgres:17.5
+    ports:
+      - 5432:5432
+    volumes:
+      - ./.postgres:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    healthcheck:
+      test: ["CMD", "pg_isready -U ${DB_USER:-postgres} || exit 1"]
+      interval: "5s"
+      retries: 10
+    restart: always
+    container_name: db
+
+  db-toolbox:
+    image: db-toolbox
+    build: ./.toolbox/
+    ports:
+      - 5000:5000
+    volumes:
+      - ./.toolbox:/config
+    depends_on:
+      - db
+    restart: always
+    container_name: db-toolbox
+
+  neo4j:
+    image: neo4j:5.26.13-ubi9
+    ports:
+      - 7474:7474
+      - 7687:7687
+    environment:
+      NEO4J_AUTH: "neo4j/${NEO4J_PASSWORD}"

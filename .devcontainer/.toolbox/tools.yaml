@@ -1,0 +1,42 @@
+sources:
+  pg:
+    kind: postgres
+    host: db
+    port: 5432
+    database: ai_agents
+    user: remote
+    password: remote
+
+tools:
+  list_tables:
+    kind: postgres-list-tables
+    source: pg
+    description: Use this tool to retrieve schema information for all or specified tables. Output format can be simple (only table names) or detailed.
+
+  execute_sql:
+    kind: postgres-execute-sql
+    source: pg
+    description: Use this tool to execute sql statement.
+
+  search-appointments:
+    kind: postgres-sql
+    source: pg
+    description: Search all appointments.
+    statement: SELECT * FROM visit_appointments;
+
+  search-appointments-by-status:
+    kind: postgres-sql
+    source: pg
+    description: Search for appointments based on its status.
+    parameters:
+      - name: status
+        type: string
+        description: The status of the appointment.
+    statement: SELECT * FROM visit_appointments WHERE status = $1;
+
+toolsets:
+  queries:
+    - list_tables
+    - execute_sql
+    - search-appointments
+    - search-appointments-by-status
