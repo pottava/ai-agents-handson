@@ -6,6 +6,7 @@ AI エージェントの基礎から応用までを学びます。
 
 1. 基本: シンプルな LLM への問い合わせから、関数の呼び出しや MCP といったツールの利用
 2. AI エージェント: 役割の設定、ツールの利用、ユーザ・セッション管理、評価テスト
+3. マルチ AI エージェント: A2A、WebUI でのデバッグ
 
 ## セットアップ
 
@@ -58,7 +59,6 @@ CLI のデフォルトに設定しつつ、Vertex AI を有効化しましょう
 ```bash
 gcloud config set project "${GOOGLE_CLOUD_PROJECT}"
 gcloud services enable aiplatform.googleapis.com
-export GOOGLE_CLOUD_LOCATION=global
 ```
 
 自分の権限でローカルのプログラムを実行できるよう、  
