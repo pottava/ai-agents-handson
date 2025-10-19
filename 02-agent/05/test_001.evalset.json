@@ -1,0 +1,88 @@
+{
+  "eval_set_id": "test_001",
+  "name": "test_001",
+  "eval_cases": [
+    {
+      "eval_id": "basic_calculation",
+      "session_input": {
+        "app_name": "05",
+        "user_id": "user"
+      },
+      "conversation": [
+        {
+          "user_content": {
+            "parts": [
+              {
+                "text": "(340+5678*9)/2 の答えは？"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "(340+5678*9)/2 の答えは 25721.0 です。"
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "my_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "args": {
+                          "a": 5678,
+                          "b": 9
+                        },
+                        "name": "multiply"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "my_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "args": {
+                          "b": 51102,
+                          "a": 340
+                        },
+                        "name": "add"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "my_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "args": {
+                          "a": 51442,
+                          "b": 2
+                        },
+                        "name": "divide"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
