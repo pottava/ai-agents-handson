@@ -50,15 +50,20 @@ dependencies = [
     { name = "faiss-cpu" },
     { name = "google-adk", extra = ["a2a", "eval"] },
     { name = "google-cloud-aiplatform", extra = ["adk", "agent-engines"] },
+    { name = "json-repair" },
     { name = "langchain" },
     { name = "langchain-community" },
     { name = "langchain-core" },
     { name = "langchain-experimental" },
     { name = "langchain-huggingface" },
     { name = "langchain-litellm" },
+    { name = "langchain-neo4j" },
     { name = "llama-index" },
+    { name = "llama-index-embeddings-google-genai" },
+    { name = "llama-index-llms-langchain" },
     { name = "mcp" },
     { name = "neo4j" },
+    { name = "neo4j-graphrag", extra = ["google"] },
     { name = "psycopg2-binary" },
     { name = "python-dotenv" },
     { name = "sentence-transformers" },
@@ -79,20 +84,25 @@ requires-dist = [
     { name = "aiohttp", specifier = ">=3.13.1" },
     { name = "asyncpg", specifier = ">=0.30.0" },
     { name = "faiss-cpu", specifier = ">=1.12.0" },
-    { name = "google-adk", extras = ["a2a", "eval"], specifier = ">=1.16.0" },
-    { name = "google-cloud-aiplatform", extras = ["adk", "agent-engines"], specifier = ">=1.121.0" },
+    { name = "google-adk", extras = ["a2a", "eval"], specifier = ">=1.17.0" },
+    { name = "google-cloud-aiplatform", extras = ["adk", "agent-engines"], specifier = ">=1.122.0" },
+    { name = "json-repair", specifier = ">=0.52.3" },
     { name = "langchain", specifier = ">=0.3.27" },
     { name = "langchain-community", specifier = ">=0.3.31" },
     { name = "langchain-core", specifier = ">=0.3.79" },
     { name = "langchain-experimental", specifier = ">=0.3.4" },
     { name = "langchain-huggingface", specifier = ">=0.3.1" },
-    { name = "langchain-litellm", specifier = ">=0.2.3" },
-    { name = "llama-index", specifier = ">=0.14.5" },
-    { name = "mcp", specifier = ">=1.18.0" },
-    { name = "neo4j", specifier = ">=6.0.2" },
+    { name = "langchain-litellm", specifier = ">=0.3.0" },
+    { name = "langchain-neo4j", specifier = ">=0.3.0" },
+    { name = "llama-index", specifier = ">=0.14.6" },
+    { name = "llama-index-embeddings-google-genai", specifier = ">=0.3.1" },
+    { name = "llama-index-llms-langchain", specifier = ">=0.7.1" },
+    { name = "mcp", specifier = ">=1.19.0" },
+    { name = "neo4j", specifier = ">=5.28.2" },
+    { name = "neo4j-graphrag", extras = ["google"], specifier = ">=1.2.1" },
     { name = "psycopg2-binary", specifier = ">=2.9.11" },
-    { name = "python-dotenv", specifier = ">=1.1.1" },
-    { name = "sentence-transformers", specifier = ">=5.1.1" },
+    { name = "python-dotenv", specifier = ">=1.2.1" },
+    { name = "sentence-transformers", specifier = ">=5.1.2" },
     { name = "sentencepiece", specifier = ">=0.2.1" },
     { name = "toolbox-core", specifier = ">=0.5.2" },
     { name = "torch", specifier = ">=2.9.0" },
@@ -1539,6 +1549,15 @@ wheels = [
 ]
 
 [[package]]
+name = "json-repair"
+version = "0.52.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/7e/f4/30c46f60c2f87d02ae0ab40347cfb30dc4906b6c8aa8157730fe7d959041/json_repair-0.52.3.tar.gz", hash = "sha256:5e6a6e4df41eb4ad2d316312940095964964f98c5f754583a0ae6efa4d6a613d", size = 35572, upload-time = "2025-10-22T04:37:33.879Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8c/cd/20e2aa73c9b937fbad7fe42624e1bc2552a2d589be9f0adbd7d98d06ef2a/json_repair-0.52.3-py3-none-any.whl", hash = "sha256:cf8affd088ccd7a3c196dad7f6152c005f126f63a614b9ea5d0c1dfa7f5d7186", size = 26522, upload-time = "2025-10-22T04:37:32.44Z" },
+]
+
+[[package]]
 name = "jsonpatch"
 version = "1.33"
 source = { registry = "https://pypi.org/simple" }
@@ -1683,6 +1702,20 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/f9/0e/f5583b4b63da7ecd1c3b45bd9c9f97b727761e492a0c07869a8779ea28dd/langchain_litellm-0.3.0.tar.gz", hash = "sha256:94d7c106c5c9c81eba0e54ce9a4f720c61461d2f5592ad612e974f096866b351", size = 11184, upload-time = "2025-10-20T11:55:27.014Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b7/14/3409f8cbb9e05019b6aa4f951ea937f933029552cfb59b8d10bbe84e5386/langchain_litellm-0.3.0-py3-none-any.whl", hash = "sha256:029afdce461fc51ff45fd06e0c2467b79304e5cc127e3596e208182ce0f637ba", size = 11861, upload-time = "2025-10-20T11:55:25.961Z" },
+]
+
+[[package]]
+name = "langchain-neo4j"
+version = "0.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "langchain" },
+    { name = "langchain-core" },
+    { name = "neo4j" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/07/f0/c889533b89756ebd5660cbcf2cad1299fd3bbbada956530c0f8fc38e578f/langchain_neo4j-0.3.0.tar.gz", hash = "sha256:747542704f39c800bcd5c6b518b5d2b7fe5538b8b914b7772c29a8062617472e", size = 35092, upload-time = "2025-01-20T10:45:05.009Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/76/f2/ea799235787a1405fa3574b9afc95aa2644c4acc59d86daff5329a112681/langchain_neo4j-0.3.0-py3-none-any.whl", hash = "sha256:6069eb748fe959d7c97add82ca3de8c0b9018dfdaa05f823aa970606f8e5cdb7", size = 38829, upload-time = "2025-01-20T10:45:02.713Z" },
 ]
 
 [[package]]
@@ -1842,6 +1875,19 @@ wheels = [
 ]
 
 [[package]]
+name = "llama-index-embeddings-google-genai"
+version = "0.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "google-genai" },
+    { name = "llama-index-core" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/62/85/0f95fd3a9e99cddc4d1dec0f168842959f6e3aa0c2570144b452300c8162/llama_index_embeddings_google_genai-0.3.1.tar.gz", hash = "sha256:2514e276dae2a9d44801861bdd9b9a60f566ad861f5fd803e9cb7fba15c5b6d6", size = 5773, upload-time = "2025-09-08T20:16:28.007Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2c/8e/217c16fd0699410af986dddded765a5d3a6051823402aa24db61a737576b/llama_index_embeddings_google_genai-0.3.1-py3-none-any.whl", hash = "sha256:07d16431d33ac694325e2279417573a33f35c34d3d98284573b5d58caf3b3b27", size = 5533, upload-time = "2025-09-08T20:16:27.297Z" },
+]
+
+[[package]]
 name = "llama-index-embeddings-openai"
 version = "0.5.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1879,6 +1925,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/af/b9/a7a74de6d8aacf4be329329495983d78d96b1a6e69b6d9fcf4a233febd4b/llama_index_instrumentation-0.4.2.tar.gz", hash = "sha256:dc4957b64da0922060690e85a6be9698ac08e34e0f69e90b01364ddec4f3de7f", size = 46146, upload-time = "2025-10-13T20:44:48.85Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/40/54/df8063b0441242e250e03d1e31ebde5dffbe24e1af32b025cb1a4544150c/llama_index_instrumentation-0.4.2-py3-none-any.whl", hash = "sha256:b4989500e6454059ab3f3c4a193575d47ab1fadb730c2e8f2b962649ae88b70b", size = 15411, upload-time = "2025-10-13T20:44:47.685Z" },
+]
+
+[[package]]
+name = "llama-index-llms-langchain"
+version = "0.7.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "langchain" },
+    { name = "llama-index-core" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/54/59/2125b4efd3b92e81994f27071c4cd4c85a59b0dfc22fdd8547f01a08ff31/llama_index_llms_langchain-0.7.1.tar.gz", hash = "sha256:b28ff406f2538ee833d7dee2d64973741895e5d092f6adc08ec5b77c6429e993", size = 6035, upload-time = "2025-09-08T20:27:47.668Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/55/c7/783fd5d09fca9b292c02508d989373d0baf01f204687bbd0a50f01510a3a/llama_index_llms_langchain-0.7.1-py3-none-any.whl", hash = "sha256:eaf9b465d98d30d5a0fa1355d2538cd8d31d37ff78d59109997ad0905cb34ce5", size = 6060, upload-time = "2025-09-08T20:27:46.947Z" },
 ]
 
 [[package]]
@@ -2149,14 +2208,32 @@ wheels = [
 
 [[package]]
 name = "neo4j"
-version = "6.0.2"
+version = "5.28.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pytz" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/eb/34/485ab7c0252bd5d9c9ff0672f61153a8007490af2069f664d8766709c7ba/neo4j-6.0.2.tar.gz", hash = "sha256:c98734c855b457e7a976424dc04446d652838d00907d250d6e9a595e88892378", size = 240139, upload-time = "2025-10-02T11:31:06.724Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/50/69/4862fabc082f2447131aada5c91736155349d77ebf443af7f59553b7b789/neo4j-5.28.2.tar.gz", hash = "sha256:7d38e27e4f987a45cc9052500c6ee27325cb23dae6509037fe31dd7ddaed70c7", size = 231874, upload-time = "2025-07-30T06:04:34.669Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/75/4e/11813da186859070b0512e8071dac4796624ac4dc28e25e7c530df730d23/neo4j-6.0.2-py3-none-any.whl", hash = "sha256:dc3fc1c99f6da2293d9deefead1e31dd7429bbb513eccf96e4134b7dbf770243", size = 325761, upload-time = "2025-10-02T11:31:04.855Z" },
+    { url = "https://files.pythonhosted.org/packages/04/00/1f74089c06aec1fac9390e2300a6a6b2381e0dac281783d64ccca9d681fd/neo4j-5.28.2-py3-none-any.whl", hash = "sha256:5c53b5c3eee6dee7e920c9724391aa38d7135a651e71b766da00533b92a91a94", size = 313156, upload-time = "2025-07-30T06:04:31.438Z" },
+]
+
+[[package]]
+name = "neo4j-graphrag"
+version = "1.2.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "neo4j" },
+    { name = "pydantic" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e4/8c/b87319de8d468f02efcce96361b7d79cce2531a371efb9c5f350018f4f72/neo4j_graphrag-1.2.1.tar.gz", hash = "sha256:1b8440d85fc0c2900994020b764ac09aef625a20551e94bed7fc929ef659cb90", size = 69876, upload-time = "2024-11-26T10:11:44.828Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ce/ca/71eec4ca938ca03c112bcfcb365df86034c2b81ed218179505d57fb9d7e2/neo4j_graphrag-1.2.1-py3-none-any.whl", hash = "sha256:f490b560bd45960b018822fb6cd297cff0a4e7bdd047c4ad3a96849594dc05b0", size = 122661, upload-time = "2024-11-26T10:11:42.569Z" },
+]
+
+[package.optional-dependencies]
+google = [
+    { name = "google-cloud-aiplatform" },
 ]
 
 [[package]]

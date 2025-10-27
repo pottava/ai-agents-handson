@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y terraform google-cloud-cli
 ENV PYTHONUNBUFFERED 1
 ENV PATH "/.venv/bin:${PATH}"
 ENV GOOGLE_CLOUD_LOCATION global
+ENV GOOGLE_GENAI_USE_VERTEXAI 1
 
 # Resolve dependencies for apps
 COPY pyproject.toml .
